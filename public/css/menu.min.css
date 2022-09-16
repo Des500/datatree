@@ -1,0 +1,50 @@
+#menu-checkbox {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .info {
+    display: block;
+  }
+  .info .left-block {
+    width: 100%;
+    display: block;
+  }
+  .info .links {
+    display: none;
+    border: 1px silver solid;
+    z-index: 100;
+    position: relative;
+    top: 20px;
+    left: 5px;
+    opacity: 0;
+    border-radius: 5px;
+    background-color: #fafafa;
+  }
+  .info .toggle-button {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    font-size: 18px;
+    display: block;
+    cursor: pointer;
+    width: 250px;
+  }
+  .info .toggle-button:after {
+    content: attr(data-open);
+    display: block;
+  }
+  .info #menu-checkbox:checked + nav[role=navigation] .links {
+    display: block;
+    opacity: 1;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+  .info #menu-checkbox:checked + nav[role=navigation] .toggle-button:after {
+    content: attr(data-close);
+  }
+  .content-block {
+    width: 100%;
+    display: block;
+  }
+}
