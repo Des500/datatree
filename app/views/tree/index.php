@@ -27,8 +27,14 @@ require_once 'public/layouts/header.php';
                 <?php
                 elseif ($level>$item['level']):
                     ?>
-                    </ul>
-                    </li>
+                    <?php
+                    for($i = $item['level']; $i<$level; $i++):
+                        ?>
+                        </ul>
+                        </li>
+                    <?php
+                    endfor;
+                    ?>
                 <?php
                 endif;
                 $level = $item['level']

@@ -10,35 +10,41 @@
     width: 100%;
     display: block;
   }
-  .info .links {
-    display: none;
-    border: 1px silver solid;
-    z-index: 100;
+  .info .left-block nav {
     position: relative;
-    top: 20px;
+  }
+  .info .left-block .links {
+    border: 1px solid silver;
+    height: 0;
+    overflow: hidden;
+    z-index: 100;
+    position: absolute;
+    top: 50px;
     left: 5px;
-    opacity: 0;
     border-radius: 5px;
     background-color: #fafafa;
+    opacity: 0;
+    width: 100%;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
   }
-  .info .toggle-button {
+  .info .left-block .toggle-button {
     text-align: center;
     padding-top: 10px;
     padding-bottom: 0px;
-    font-size: 18px;
     display: block;
     cursor: pointer;
-    width: 250px;
+    width: 200px;
   }
-  .info .toggle-button:after {
+  .info .left-block .toggle-button:after {
     content: attr(data-open);
     display: block;
   }
   .info #menu-checkbox:checked + nav[role=navigation] .links {
-    display: block;
+    height: auto;
     opacity: 1;
-    -webkit-transition: all 500ms ease;
-    transition: all 500ms ease;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
   }
   .info #menu-checkbox:checked + nav[role=navigation] .toggle-button:after {
     content: attr(data-close);

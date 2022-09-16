@@ -9,42 +9,66 @@
     .left-block {
       width: 100%;
       display: block;
-    }
-    .links {
-      display: none;
-      border: 1px silver solid;
-      z-index: 100;
-      position: relative;
-      top: 20px;
-      left: 5px;
-      opacity: 0;
-      border-radius: 5px;
-      background-color: #fafafa;
-      //padding: 10px 20px 10px 40px;
-    }
-    .toggle-button {
-      text-align: center;
-      padding-top: 10px;
-      padding-bottom: 0px;
-      font-size: 18px;
-      display: block;
-      cursor: pointer;
-      width: 250px;
-      &:after {
-        content: attr(data-open);
-        display: block;
+      nav {
+        position: relative;
       }
+      .links {
+        border: 1px solid silver;
+        height: 0;
+        overflow: hidden;
+        z-index: 100;
+        position: absolute;
+        top: 50px;
+        left: 5px;
+        border-radius: 5px;
+        background-color: #fafafa;
+        opacity: 0;
+        width: 100%;
+        transition: all 500ms;
+        //padding: 10px 20px 10px 40px;
+      }
+      .toggle-button {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        //font-size: 14px;
+        display: block;
+        cursor: pointer;
+        width: 200px;
+        &:after {
+          content: attr(data-open);
+          display: block;
+        }
+      }
+
     }
 
-    #menu-checkbox:checked + nav[role="navigation"] .links {
-      display: block;
-      opacity: 1;
-      transition: all 500ms ease;
-    }
-    #menu-checkbox:checked + nav[role="navigation"] .toggle-button:after {
-      content: attr(data-close);
+    //#menu-checkbox + nav[role="navigation"] {
+    //  label {
+    //    padding-right: 10px;
+    //    &:before {
+    //      content: '\276F';
+    //      float: right;
+    //    }
+    //  }
+    //}
+
+    #menu-checkbox:checked + nav[role="navigation"] {
+      .links {
+        height: auto;
+        opacity: 1;
+        transition: all 500ms;
+      }
+      .toggle-button:after {
+        content: attr(data-close);
+      }
+      //label:before {
+      //  transition: transform 500ms;
+      //  transform: rotate(90deg);
+      //}
     }
   }
+
   .content-block {
     width: 100%;
     display: block;
