@@ -29,11 +29,12 @@ class TreeModel
      *
      * @param  int  $id - id родительского элемента, по которому собираются дочерние (для корня - родитель 0)
      * @param  int  $excludeId - id элемента, ветку которого требуется исключить (невозможно перенести родительский элемент в ветку дочернего)
+     * @param  bool  $addRootLevel - добавление/пропуск 0-го уровня в начало результирующего массива
      * @return array $treeArray -> дерево данных
      * [items] - массив дерева данных без исключенных id
      * [excludedId] - массив исключенных id
      */
-    public function getTree ($id=0, $excludeId = -1) {
+    public function getTree ($id=0, $excludeId = -1, $addRootLevel = true) {
         $query = $this->_db->query("SELECT * FROM `datatree` ORDER BY `parent_id`");
         $this->itemsArray = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -44,6 +45,15 @@ class TreeModel
 //        }
 //        $this->getChildrenAsTree();
         $this->getChildrenTree($id,0,$excludeId);
+
+        if($addRootLevel)
+            array_unshift($this->treeArray['items'], [
+                'level' => 0,
+                'item' => [
+                    'id' => 0,
+                    'title' => 'Корень дерева',
+                ]
+            ]);
 
         if(( $excludeId>0 ) && ( isset($this->treeArray['items'][$excludeId]) )) {
             unset($this->treeArray['items'][$excludeId]);
@@ -153,7 +163,7 @@ class TreeModel
      * @param  int  $id - id элемента
      */
     public function delete ($id) {
-        $deletingId = $this->getTree(0,$id)['excludedId'];
+        $deletingId = $this->getTree(0,$id, false)['excludedId'];
         foreach ($deletingId as $item) {
             $sql = 'DELETE FROM datatree WHERE id = :id';
             $query = $this->_db->prepare($sql);

@@ -10,6 +10,7 @@ input[type="checkbox"] {
     input[type="checkbox"] {
       + label {
         padding-right: 10px;
+        cursor: pointer;
         &:before {
           content: '\276F';
           float: right;
@@ -64,11 +65,12 @@ input[type="checkbox"] {
       .toggle-button {
         text-align: center;
         padding-top: 10px;
+        height: 30px;
         padding-bottom: 0px;
         //font-size: 14px;
         display: block;
         cursor: pointer;
-        width: 200px;
+        width: 180px;
         &:after {
           content: attr(data-open);
           display: block;

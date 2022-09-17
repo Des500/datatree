@@ -14,6 +14,7 @@ require_once 'public/layouts/header.php';
                 <label for="menu-checkbox" class="btn toggle-button" data-open="Дерево развернуть" data-close="Дерево свернуть" onclick>
                 </label>
                 <div class="links">
+                    <ul>
                     <?php
                     $level=0;
                     foreach ($data['tree'] as $key => $item):
@@ -61,7 +62,7 @@ require_once 'public/layouts/header.php';
                         <li>
                             <a href="/tree/adminpanel/<?=$item['item']['id']?>" class="menu-item">
                             <?php
-                            for ($i = 0; $i < $item['level']; $i++) echo '-';
+//                            for ($i = 0; $i < $item['level']; $i++) echo '-';
                             ?>
                             <?=$item['item']['id']?> <?=$item['item']['parent_id']?> <?=$item['item']['title']?>
                             </a>
@@ -69,6 +70,7 @@ require_once 'public/layouts/header.php';
                     <?php
                     endforeach;
                     ?>
+                    </ul>
                 </div>
             </nav>
 

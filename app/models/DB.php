@@ -6,10 +6,7 @@ class DB
     static function getInstence() {
         self::$_db = null;
         if(self::$_db == null) {
-            $user='root';
-            $pass='root';
-            $db='testdatatree';
-            $host='localhost';
+            require 'config.php';
             $dsn = 'mysql:host='.$host.';dbname='.$db;
             self::$_db = new PDO($dsn, $user, $pass);
             return self::$_db;

@@ -7,7 +7,7 @@ require_once 'public/layouts/header.php';
     <h1>Авторизация</h1>
     <p>Авторизация пользователя</p>
     <form action="/user/auth" method="post" class="form-control">
-        <input type="email" name="email" placeholder="введите email" value="<?=$_POST['email']?>">
+        <input type="text" name="email" placeholder="введите email" value="<?=$_POST['email']?>">
         <br>
         <input type="password" name="pass" placeholder="введите пароль" value="<?=$_POST['pass']?>">
         <br>

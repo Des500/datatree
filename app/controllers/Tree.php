@@ -6,13 +6,6 @@ class Tree extends Controller
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
         $tree = $dataTree->getTree()['items'];
-         array_unshift($tree, [
-             'level' => 0,
-             'item' => [
-                 'id' => 0,
-                 'title' => 'Корень дерева',
-             ]
-         ]);
         $data = [
             'tree' =>  $tree,
             'itemdata' =>  $itemData
@@ -28,13 +21,6 @@ class Tree extends Controller
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
         $tree = $dataTree->getTree()['items'];
-        array_unshift($tree, [
-            'level' => 0,
-            'item' => [
-                'id' => 0,
-                'title' => 'Корень дерева',
-            ]
-        ]);
         $data = [
             'tree' =>  $tree,
             'itemdata' =>  $itemData
@@ -50,14 +36,6 @@ class Tree extends Controller
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
         $tree = $dataTree->getTree(0, $id)['items'];
-        array_unshift($tree, [
-            'level' => 0,
-            'item' => [
-                'id' => 0,
-                'title' => 'Корень дерева',
-            ]
-        ]);
-
         $data = [
             'tree' =>  $tree,
             'itemdata' =>  $itemData
@@ -72,13 +50,6 @@ class Tree extends Controller
 
         $dataTree = $this->Model('TreeModel');
         $tree = $dataTree->getTree()['items'];
-        array_unshift($tree, [
-            'level' => 0,
-            'item' => [
-                'id' => 0,
-                'title' => 'Корень дерева',
-            ]
-        ]);
         $data = [
             'tree' =>  $tree,
             'parent_id' =>  $parent_id,

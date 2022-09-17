@@ -7,5 +7,7 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 
+RewriteCond %{HTTPS} !on
+
 RewriteRule ^(.*)$ index.php?url\=$1 [L,QSA]
 Options +FollowSymlinks
