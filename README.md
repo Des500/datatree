@@ -5,6 +5,7 @@
 id     - primary index<br>
 name   - имя<br>
 email  - емайл, уникальный, логин<br>
+pass   - пароль, хэш<br>
 role   - права пользователя (user/admin) <br>
 ### datatree
 id          - primary index<br>
