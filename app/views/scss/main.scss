@@ -145,10 +145,37 @@ header {
     background-color: #ff5644;
   }
 }
-.error {
-  color: #ff5644;
+
+#notif-message {
   font-weight: 600;
   margin-top: 10px;
+  width: 50%;
+  height: 30px;
+  .error, .success {
+    display: block;
+  }
+  .error {
+    color: #ff5644;
+  }
+  .success {
+    color: #588a2a;
+  }
+
+  .form_closed {
+    display: none;
+  }
+  .form_opened {
+    display: block;
+  }
+  .form_open {
+    /*display: block;*/
+    transition: 0.5s; /*Скорость перехода состояния элемента*/
+    opacity: 0.95;
+  }
+  .form_close {
+    transition: 1s; /*Скорость перехода состояния элемента*/
+    opacity: 0;
+  }
 }
 
 .main {
@@ -179,7 +206,7 @@ header {
       //background-color: #fafafa;
       //border-bottom: 1px solid silver;
       //border-radius: 5px;
-      padding: 5px 0px;
+      //padding: 5px 0px;
       padding-right: 2%;
       padding-left: 2%;
       li {
@@ -187,6 +214,7 @@ header {
         text-align: left;
         list-style: none;
         display: inline-block;
+        padding-top: 5px;
         a {
           color: #333;
           &:hover {

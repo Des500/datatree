@@ -74,6 +74,7 @@ class UserModel
 
     public function logOut () {
         $_SESSION['login']=null;
+        NotifMessage::setStatus('success', 'Вы вышли');
         header('location: /user/auth');
     }
 
@@ -91,6 +92,7 @@ class UserModel
 
     private function setAuth ($email) {
         $_SESSION['login'] = $email;
+        NotifMessage::setStatus('success', 'Вы авторизованы');
         header('location: /user/dashboard');
     }
 

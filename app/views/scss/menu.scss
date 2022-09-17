@@ -62,7 +62,7 @@ input[type="checkbox"] {
         transition: all 500ms;
         //padding: 10px 20px 10px 40px;
       }
-      .toggle-button {
+      .toggle-btn {
         text-align: center;
         padding-top: 10px;
         height: 30px;
@@ -95,7 +95,7 @@ input[type="checkbox"] {
         opacity: 1;
         transition: all 500ms;
       }
-      .toggle-button:after {
+      .toggle-btn:after {
         content: attr(data-close);
       }
       //label:before {

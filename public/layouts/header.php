@@ -50,3 +50,9 @@
     </div>
 
 </header>
+<div class="container">
+    <div id="notif-message">
+        <div class="error"><?=NotifMessage::getStatus('error')?></div>
+        <div class="success"><?=NotifMessage::getStatus('success')?></div>
+    </div>
+</div>

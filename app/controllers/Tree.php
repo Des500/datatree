@@ -14,9 +14,7 @@ class Tree extends Controller
     }
 
     public function adminpanel ($id = 0) {
-        $user = $this->Model('UserModel');
-        if($user->getUser()['role'] !== 'admin')
-            $this->redirect('location: /');
+        $this->userRoleCheck();
 
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
@@ -29,9 +27,7 @@ class Tree extends Controller
     }
 
     public function edit($id) {
-        $user = $this->Model('UserModel');
-        if($user->getUser()['role'] !== 'admin')
-            $this->redirect('location: /');
+        $this->userRoleCheck();
 
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
@@ -44,9 +40,7 @@ class Tree extends Controller
     }
 
     public function add($parent_id) {
-        $user = $this->Model('UserModel');
-        if($user->getUser()['role'] !== 'admin')
-            $this->redirect('location: /');
+        $this->userRoleCheck();
 
         $dataTree = $this->Model('TreeModel');
         $tree = $dataTree->getTree()['items'];
@@ -58,9 +52,7 @@ class Tree extends Controller
     }
 
     public function update() {
-        $user = $this->Model('UserModel');
-        if($user->getUser()['role'] !== 'admin')
-            $this->redirect('location: /');
+        $this->userRoleCheck();
 
         $dataTree = $this->Model('TreeModel');
         if(isset($_POST['id'])) {
@@ -68,20 +60,20 @@ class Tree extends Controller
             $dataTree->parent_id = explode('|',$_POST['parent_id'])[1];
             $dataTree->title = $_POST['title'];
             $dataTree->description = $_POST['description'];
-            if($dataTree->validForm() === 'ok') {
-                $dataTree->save();
+            $valid = $dataTree->validForm();
+            if($valid === 'ok') {
+                NotifMessage::setStatus('success', $dataTree->save());
                 $this->redirect('location: /tree/adminpanel/'.$_POST['id']);
             }
             else {
+                NotifMessage::setStatus('error', $valid);
                 $this->redirect('location: /tree/edit/'.$_POST['id']);
             }
         }
     }
 
     public function store() {
-        $user = $this->Model('UserModel');
-        if($user->getUser()['role'] !== 'admin')
-            $this->redirect('location: /');
+         $this->userRoleCheck();
 
         $dataTree = $this->Model('TreeModel');
         if(isset($_POST['parent_id'])) {
@@ -91,23 +83,33 @@ class Tree extends Controller
             $dataTree->title = $_POST['title'];
             $dataTree->description = $_POST['description'];
             if($dataTree->validForm() === 'ok') {
-                $dataTree->save();
+                NotifMessage::setStatus('success', $dataTree->save());
                 $this->redirect('location: /tree/adminpanel/'.$parent_id);
             }
-            else
+            else {
+                NotifMessage::setStatus('error', $valid);
                 $this->redirect('location: /tree/adminpanel/');
+            }
         }
     }
 
     public function delete($id) {
-        $user = $this->Model('UserModel');
-        if($user->getUser()['role'] !== 'admin')
-            $this->redirect('location: /');
-        else {
+         if($this->userRoleCheck())
+         {
             $dataTree = $this->Model('TreeModel');
             $parent_id = $dataTree->getElement($id)['parent_id'];
-            $result = $dataTree->delete($id);
+            NotifMessage::setStatus('success', $dataTree->delete($id));
             $this->redirect('location: /tree/adminpanel/' . $parent_id);
         }
+     }
+
+     private function userRoleCheck () {
+         $user = $this->Model('UserModel');
+         if($user->getUser()['role'] !== 'admin') {
+             NotifMessage::setStatus('error', 'У вас нет прав на изменение контента');
+             $this->redirect('location: /');
+             return false;
+         }
+         else return true;
      }
 }
