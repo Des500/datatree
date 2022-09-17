@@ -1,0 +1,406 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+a:hover {
+  color: #8bddff;
+}
+
+.container {
+  padding-left: 15%;
+  padding-right: 15%;
+  width: 70%;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 90%;
+  }
+}
+.btn {
+  width: 130px;
+  height: 40px;
+  background-color: #333;
+  border-radius: 5px;
+  border: 0;
+  font-size: 14px;
+  margin-left: 10px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+.btn:hover {
+  -webkit-transform: scale(1.05) translateY(-5px);
+  transform: scale(1.05) translateY(-5px);
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+header > .top-menu {
+  padding-bottom: 15px;
+  padding-top: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background-color: #333;
+  color: #fff;
+  text-transform: uppercase;
+}
+header > .top-menu > .nav a {
+  color: #fff;
+  margin-right: 10px;
+}
+header > .top-menu > .nav a:hover {
+  color: #757575;
+}
+header > .top-menu > .nav a:not(:last-of-type)::after {
+  content: "|";
+  margin-left: 10px;
+  color: #fff;
+}
+header > .top-menu > .tel > i {
+  margin-right: 10px;
+}
+header > .middle {
+  margin: 30px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+header > .middle > .logo img {
+  width: 100px;
+  float: left;
+  margin-right: 20px;
+}
+header > .middle > .logo span {
+  float: left;
+  font-size: 2em;
+  font-weight: 700;
+  display: block;
+  max-width: 250px;
+  margin-top: 30px;
+}
+header > .middle > .logo a {
+  color: #333;
+}
+header > .middle > .logo a:hover {
+  color: #333;
+}
+header .btn.auth {
+  width: 100px;
+  background-color: #ff5644;
+}
+header .btn.dashboard {
+  width: 200px;
+  background-color: #ff5644;
+}
+header .btn.basket {
+  width: 95%;
+  background-color: #fff;
+  color: #333;
+  margin-bottom: 10px;
+  border: 1px solid #333;
+}
+.btn-group {
+  width: 100%;
+  min-width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.btn-group .btn-success {
+  background-color: #588a2a;
+}
+.btn-group .btn-warning {
+  background-color: #ff5644;
+}
+
+#notif-message {
+  font-weight: 600;
+  margin-top: 10px;
+  width: 50%;
+  height: 30px;
+}
+#notif-message .error, #notif-message .success {
+  display: block;
+}
+#notif-message .error {
+  color: #ff5644;
+}
+#notif-message .success {
+  color: #588a2a;
+}
+#notif-message .form_closed {
+  display: none;
+}
+#notif-message .form_opened {
+  display: block;
+}
+#notif-message .form_open {
+  /*display: block;*/
+  -webkit-transition: 0.5s;
+  transition: 0.5s; /*Скорость перехода состояния элемента*/
+  opacity: 0.95;
+}
+#notif-message .form_close {
+  -webkit-transition: 1s;
+  transition: 1s; /*Скорость перехода состояния элемента*/
+  opacity: 0;
+}
+
+.main {
+  margin-top: 50px;
+}
+.main .user-info .btn {
+  width: 200px;
+}
+
+.info {
+  margin-top: 10px;
+  margin-bottom: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.info .left-block {
+  width: 30%;
+}
+.info .left-block .menu {
+  width: 100%;
+}
+.info .links {
+  display: block;
+}
+.info .links ul {
+  padding-right: 2%;
+  padding-left: 2%;
+}
+.info .links ul li {
+  width: 95%;
+  text-align: left;
+  list-style: none;
+  display: inline-block;
+  padding-top: 5px;
+}
+.info .links ul li a {
+  color: #333;
+}
+.info .links ul li a:hover {
+  color: #ff5644;
+}
+.info .content-block {
+  margin-left: 10px;
+  margin-top: 30px;
+  float: left;
+}
+.info .btn {
+  margin-top: 15px;
+  width: 150px;
+}
+
+footer {
+  margin-top: 50px;
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+}
+footer .social > i {
+  display: inline-block;
+  margin-left: 15px;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 50%;
+  background-color: silver;
+  border: 1px solid silver;
+  cursor: pointer;
+  color: #333;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+footer .social > i:hover {
+  -webkit-transform: translateY(-5px) scale(1.2);
+  transform: translateY(-5px) scale(1.2);
+}
+
+.form-control {
+  margin-top: 50px;
+  max-width: 500px;
+}
+.form-control input, .form-control textarea, .form-control select {
+  width: 100%;
+  background-color: #fcfcfc;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 15px 0px;
+  padding-left: 0px;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 30px;
+}
+.form-control textarea {
+  height: 100px;
+  resize: none;
+}
+
+.user-info {
+  margin: 10px 0;
+  background-color: #fafafa;
+  border: 1px solid silver;
+  padding: 20px 3%;
+  width: 94%;
+}
+.user-info .btn {
+  margin-left: 0;
+  margin-top: 20px;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+.info .left-block input[type=checkbox] {
+  display: none;
+}
+.info .left-block .links input[type=checkbox] + label {
+  padding-right: 10px;
+  cursor: pointer;
+}
+.info .left-block .links input[type=checkbox] + label:before {
+  content: "❯";
+  float: right;
+}
+.info .left-block .links input[type=checkbox] + label + ul {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+.info .left-block .links input[type=checkbox]:checked + label:before {
+  -webkit-transition: -webkit-transform 500ms;
+  transition: -webkit-transform 500ms;
+  transition: transform 500ms;
+  transition: transform 500ms, -webkit-transform 500ms;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.info .left-block .links input[type=checkbox]:checked + label + ul {
+  height: auto;
+  opacity: 1;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+@media (max-width: 900px) {
+  .info {
+    display: block !important;
+  }
+  .info .left-block {
+    width: 100%;
+    display: block;
+  }
+  .info .left-block nav {
+    position: relative;
+    width: 100% !important;
+  }
+  .info .left-block .links {
+    border: 1px solid silver;
+    height: 0;
+    overflow: hidden;
+    z-index: 100;
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    border-radius: 5px;
+    background-color: #fafafa;
+    opacity: 0;
+    width: 100%;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+  }
+  .info .left-block .toggle-btn {
+    text-align: center;
+    padding-top: 10px;
+    height: 30px;
+    padding-bottom: 0px;
+    display: block;
+    cursor: pointer;
+    width: 180px;
+  }
+  .info .left-block .toggle-btn:after {
+    content: attr(data-open);
+    display: block;
+  }
+  .info #menu-checkbox:checked + nav.menu .links {
+    height: auto;
+    opacity: 1;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+  }
+  .info #menu-checkbox:checked + nav.menu .toggle-btn:after {
+    content: attr(data-close);
+  }
+  .content-block {
+    width: 100%;
+    display: block;
+  }
+}
