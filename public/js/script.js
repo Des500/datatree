@@ -29,7 +29,9 @@ document.querySelectorAll('#notif-message div').forEach(function (item) {
 document.querySelectorAll('.links a').forEach(function (item) {
     item.addEventListener( 'click', function () {
         itemId = item.id.split('-')[1];
-        console.log(itemId);
+        console.log(window.innerWidth);
+        if (window.innerWidth<=900)
+            document.location.href = '/tree/index/' + itemId;
         if (itemId == 0) {
             document.querySelector('#element-title').innerHTML = 'Выберите элемент';
             document.querySelector('#element-desc').innerHTML = '';
