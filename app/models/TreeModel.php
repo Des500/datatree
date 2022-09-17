@@ -121,23 +121,21 @@ class TreeModel
         if (!empty($this->getElement($this->id))) {
             $sql = 'UPDATE datatree SET parent_id = :parent_id, title = :title, description = :description WHERE id = :id';
             $query = $this->_db->prepare($sql);
-            $query->execute([
+            $message = $query->execute([
                 'id' => $this->id,
                 'parent_id' => $this->parent_id,
                 'title' => $this->title,
                 'description' => $this->description
-            ]);
-            $message = 'Элемент успешно обновлен';
+            ]) ? 'Элемент успешно обновлен': 'Элемент не обновлен';
         }
         else {
             $sql = 'INSERT INTO datatree(parent_id, title, description) VALUES (:parent_id, :title, :description)';
             $query = $this->_db->prepare($sql);
-            $query->execute([
+            $message = $query->execute([
                 'parent_id' => $this->parent_id,
                 'title' => $this->title,
                 'description' => $this->description
-            ]);
-            $message = 'Элемент успешно добавлен';
+            ]) ? 'Элемент успешно добавлен': 'Элемент не добавлен';
         }
         return $message;
     }
