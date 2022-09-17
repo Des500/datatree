@@ -55,7 +55,7 @@ require_once 'public/layouts/header.php';
                             <?php
 //                            for ($i = 0; $i < $item['level']; $i++) echo '-';
                             ?>
-                            <?=$item['item']['id']?> <?=$item['item']['parent_id']?> <?=$item['item']['title']?>
+                            <?=$item['item']['id']?>|<?=$item['item']['parent_id']?>|<?=$item['item']['title']?>
                             </a>
 
                     <?php

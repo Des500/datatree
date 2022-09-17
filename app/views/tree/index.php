@@ -58,11 +58,11 @@ require_once 'public/layouts/header.php';
                     ?>
 
                     <li>
-                        <a href="/tree/index/<?=$item['item']['id']?>" class="menu-item">
+                        <a href="#" class="menu-item" id="item-<?=$item['item']['id']?>">
                             <?php
                             //                            for ($i = 0; $i < $item['level']; $i++) echo '-';
                             ?>
-                            <?=$item['item']['id']?> <?=$item['item']['parent_id']?> <?=$item['item']['title']?>
+                            <?=$item['item']['id']?>|<?=$item['item']['parent_id']?>|<?=$item['item']['title']?>
                         </a>
 
                         <?php
@@ -74,18 +74,9 @@ require_once 'public/layouts/header.php';
 
     </div>
     <div class="content-block">
-        <?php
-        if(!empty($data['itemdata'])):
-        ?>
-            <h2><?=$data['itemdata']['title'] ?></h2>
-            <p><?=$data['itemdata']['description'] ?></p>
-        <?php
-        else:
-        ?>
-            <h2>Выберите элемент</h2>
-        <?php
-        endif;
-        ?>
+        <h2 id="element-title"></h2>
+        <p>&nbsp;</p>
+        <p id="element-desc"></p>
     </div>
 </section>
 

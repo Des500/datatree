@@ -52,6 +52,7 @@ class TreeModel
                 'item' => [
                     'id' => 0,
                     'title' => 'Корень дерева',
+                    'description' => 'Выберите элемент'
                 ]
             ]);
 

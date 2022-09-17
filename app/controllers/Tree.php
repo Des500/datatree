@@ -13,6 +13,12 @@ class Tree extends Controller
         $this->view('tree/index', $data);
     }
 
+    public function getElementAjax($id = 0) {
+        $dataTree = $this->Model('TreeModel');
+        $itemData = $id > 0 ? $dataTree->getElement($id): '';
+        die(json_encode($itemData));
+    }
+
     public function adminpanel ($id = 0) {
         $this->userRoleCheck();
 
