@@ -89,7 +89,7 @@ input[type="checkbox"] {
     //  }
     //}
 
-    #menu-checkbox:checked + nav[role="navigation"] {
+    #menu-checkbox:checked + nav.menu {
       .links {
         height: auto;
         opacity: 1;
