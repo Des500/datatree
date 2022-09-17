@@ -58,7 +58,7 @@ require_once 'public/layouts/header.php';
                     ?>
 
                     <li>
-                        <a href="#" class="menu-item" id="item-<?=$item['item']['id']?>">
+                        <a class="menu-item" id="item-<?=$item['item']['id']?>">
                             <?php
                             //                            for ($i = 0; $i < $item['level']; $i++) echo '-';
                             ?>

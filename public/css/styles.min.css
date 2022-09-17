@@ -233,6 +233,7 @@ header .btn.basket {
 }
 .info .links ul li a {
   color: #333;
+  cursor: pointer;
 }
 .info .links ul li a:hover {
   color: #ff5644;
