@@ -23,16 +23,7 @@ require_once 'public/layouts/header.php';
                         <?php
                         if($level<$item['level']):
                             ?>
-                            <input type="checkbox" id="input<?=$item['item']['id']?>"
-
-                                <?php
-                                if($level==0):
-                                    ?>
-                                    checked
-                                <?php
-                                endif;
-                                    ?>
-                            >
+                            <input type="checkbox" id="input<?=$item['item']['id']?>" checked>
                             <label for="input<?=$item['item']['id']?>" class="toggle-ul" onclick>
                             </label>
                             <ul id="ul<?=$item['item']['id']?>">
