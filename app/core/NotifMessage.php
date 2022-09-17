@@ -7,7 +7,6 @@ class NotifMessage
         if(($status!=='success')&&($status!=='error'))
             return false;
         $_SESSION[$status] = $content;
-        print_r($_SESSION);
         return true;
     }
     public static function getStatus ($status = 'success', $content = '') {
