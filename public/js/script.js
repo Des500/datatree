@@ -25,29 +25,30 @@ document.querySelectorAll('#notif-message div').forEach(function (item) {
     }, 6000);
 });
 
-// получение информации об элементе
+// получение и вывод информации об элементе
 document.querySelectorAll('.links a').forEach(function (item) {
     item.addEventListener( 'click', function () {
         itemId = item.id.split('-')[1];
-        console.log(window.innerWidth);
-        if (window.innerWidth<=900)
-            document.location.href = '/tree/index/' + itemId;
         if (itemId == 0) {
             document.querySelector('#element-title').innerHTML = 'Выберите элемент';
             document.querySelector('#element-desc').innerHTML = '';
             return;
         }
-        let request = new XMLHttpRequest();
-        let url = '/tree/getElementAjax/' +itemId ;
-        request.open("POST", url, true);
-        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.addEventListener("readystatechange", () => {
-            if(request.readyState === 4 && request.status === 200) {
-                itemContent = JSON.parse(request.responseText);
-                document.querySelector('#element-title').innerHTML = itemContent['id'] + '|' + itemContent['title'];
-                document.querySelector('#element-desc').innerHTML = itemContent['description'];
-            }
-        });
-        request.send();
+        else {
+            let request = new XMLHttpRequest();
+            let url = '/tree/getElementAjax/' + itemId;
+            request.open("POST", url, true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                    itemContent = JSON.parse(request.responseText);
+                    document.querySelector('#element-title').innerHTML = itemContent['id'] + '|' + itemContent['title'];
+                    document.querySelector('#element-desc').innerHTML = itemContent['description'];
+                }
+            });
+            request.send();
+        }
+        if (window.innerWidth<=900)
+            document.querySelector('#menu-checkbox').checked = false;
     })
 })
