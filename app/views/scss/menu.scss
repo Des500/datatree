@@ -1,16 +1,50 @@
-#menu-checkbox{
+input[type="checkbox"] {
   display: none;
+}
+
+.info .left-block {
+  input[type="checkbox"] {
+    display: none;
+  }
+  .links {
+    input[type="checkbox"] {
+      + label {
+        padding-right: 10px;
+        &:before {
+          content: '\276F';
+          float: right;
+        }
+        + ul {
+          height: 0;
+          opacity: 0;
+          overflow: hidden;
+        }
+      }
+      &:checked {
+        + label:before {
+          transition: transform 500ms;
+          transform: rotate(90deg);
+        }
+        + label + ul {
+          height: auto;
+          opacity: 1;
+          transition: all 500ms;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 900px) {
 
   .info {
-    display: block;
+    display: block !important;
     .left-block {
       width: 100%;
       display: block;
       nav {
         position: relative;
+        width: 100% !important;
       }
       .links {
         border: 1px solid silver;

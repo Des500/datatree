@@ -34,9 +34,9 @@ class TreeModel
      * [excludedId] - массив исключенных id
      */
     public function getTree ($id=0, $excludeId = -1) {
-//        $query = $this->_db->query("SELECT * FROM `datatree` ORDER BY `parent_id`");
-//        $this->itemsArray = $query->fetchAll(PDO::FETCH_ASSOC);
-//
+        $query = $this->_db->query("SELECT * FROM `datatree` ORDER BY `parent_id`");
+        $this->itemsArray = $query->fetchAll(PDO::FETCH_ASSOC);
+
 //        foreach ($this->itemsArray as $key => $item) {
 //            echo $key.' -> ';
 //            print_r($item);
@@ -52,9 +52,14 @@ class TreeModel
         return $this->treeArray;
     }
 
-//    public function getChildrenAsTree ($parentId = 0, $excludeId = 0, $items=[]) {
-//
-//    }
+    public function getParentChildrens ($parentId = 0) {
+        $items =[];
+        foreach ($this->itemsArray as $key => $item) {
+            if($item['parent_id']==$parentId)
+                array_push($items, $item);
+        }
+        return $items;
+    }
 
     /**
      * Функция сбора дерева данных родительского элемента (рекурсивная).
@@ -65,8 +70,10 @@ class TreeModel
      * @return array $treeArray - массив дерева данных
      */
     public function getChildrenTree($parent_id = 0, $level = 0, $excludeId = 0) {
-        $result = $this->_db->query("SELECT * FROM `datatree` WHERE `parent_id` = '$parent_id' ORDER BY `parent_id`");
-        $items = $result->fetchAll(PDO::FETCH_ASSOC);
+//        $result = $this->_db->query("SELECT * FROM `datatree` WHERE `parent_id` = '$parent_id' ORDER BY `parent_id`");
+//        $items = $result->fetchAll(PDO::FETCH_ASSOC);
+        $items = $this->getParentChildrens($parent_id);
+
         $level ++;
         foreach ($items as $key => $item) {
             if(($parent_id != $excludeId)) {

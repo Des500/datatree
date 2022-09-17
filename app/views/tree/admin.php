@@ -15,13 +15,27 @@ require_once 'public/layouts/header.php';
                 </label>
                 <div class="links">
                     <?php
-                    $level=-1;
+                    $level=0;
                     foreach ($data['tree'] as $key => $item):
                         ?>
+
                         <?php
                         if($level<$item['level']):
                             ?>
-                            <ul>
+                            <input type="checkbox" id="input<?=$item['item']['id']?>"
+
+                                <?php
+                                if($level==0):
+                                    ?>
+                                    checked
+                                <?php
+                                endif;
+                                    ?>
+                            >
+                            <label for="input<?=$item['item']['id']?>" class="toggle-ul" data-open="Дерево развернуть" data-close="Дерево свернуть" onclick>
+                            </label>
+                            <ul id="ul<?=$item['item']['id']?>">
+
                         <?php
                         elseif ($level == $item['level']):
                             ?>
@@ -29,6 +43,7 @@ require_once 'public/layouts/header.php';
                         <?php
                         elseif ($level>$item['level']):
                                 ?>
+
                             <?php
                             for($i = $item['level']; $i<$level; $i++):
                                 ?>
@@ -37,6 +52,7 @@ require_once 'public/layouts/header.php';
                             <?php
                             endfor;
                                 ?>
+
                         <?php
                         endif;
                         $level = $item['level']
