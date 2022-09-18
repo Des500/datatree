@@ -1,6 +1,6 @@
 @import "vars";
 
-.left-block {
+.info .left-block {
   width: 30%;
   .menu {
     width: 100%;
@@ -58,7 +58,7 @@
 }
 
 @media (max-width: $screenWidth) {
-  .left-block {
+  .info .left-block {
     width: 100%;
     display: block;
     nav {
