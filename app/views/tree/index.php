@@ -6,8 +6,8 @@ require_once 'public/layouts/header.php';
 <section class="container info">
 
     <?php
-    $inputChecked = '';
-    include 'blocks/leftBlock.php'
+        $inputChecked = '';
+        include 'blocks/leftBlock.php'
     ?>
 
     <div class="content-block">
