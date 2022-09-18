@@ -13,7 +13,7 @@ class TreeModel
         'items' => [],
         'excludedId' => []
     ];
-    private $itemsArray= [];
+    private $queryArray= [];
 
     public $id;
     public $parent_id;
@@ -36,7 +36,7 @@ class TreeModel
      */
     public function getTree ($id=0, $excludeId = -1, $addRootLevel = true) {
         $query = $this->_db->query("SELECT * FROM `datatree` ORDER BY `id`");
-        $this->itemsArray = $query->fetchAll(PDO::FETCH_ASSOC);
+        $this->queryArray = $query->fetchAll(PDO::FETCH_ASSOC);
         if($addRootLevel)
             $this->treeArray['items'][0] = [
                 'level' => 0,
@@ -54,11 +54,18 @@ class TreeModel
         return $this->treeArray;
     }
 
+    /**
+     * Функция сбора дочерних элементов 1 го уровня.
+     *
+     * @param  int  $parent_id - id родительского элемента, по которому собираются дочерние (для корня - родитель 0)
+     */
     public function getParentChildrens ($parentId = 0) {
         $items =[];
-        foreach ($this->itemsArray as $key => $item) {
-            if($item['parent_id']==$parentId)
+        foreach ($this->queryArray as $key => $item) {
+            if($item['parent_id']==$parentId) {
                 array_push($items, $item);
+                unset($this->queryArray[$key]);
+            }
         }
         return $items;
     }
@@ -69,7 +76,6 @@ class TreeModel
      * @param  int  $parent_id - id родительского элемента, по которому собираются дочерние (для корня - родитель 0)
      * @param  int  $level - родительский уровень (для корня родитель - 0)
      * @param  int  $excludeId - id элемента, ветку которого требуется исключить (невозможно перенести родительский элемент в ветку дочернего)
-     * @return array $treeArray - массив дерева данных
      */
     public function getChildrenTree($parent_id = 0, $level = 0, $excludeId = 0) {
         $items = $this->getParentChildrens($parent_id);

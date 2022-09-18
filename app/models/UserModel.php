@@ -12,6 +12,9 @@ class UserModel
         $this->_db = DB::getInstence();
     }
 
+    /**
+     * Функция установки значений.
+     */
     public function setData($name, $email, $pass, $re_pass) {
         $this->name = $name;
         $this->email = $email;
@@ -19,6 +22,9 @@ class UserModel
         $this->re_pass = $re_pass;
     }
 
+    /**
+     * Функция проверки формы регистрации.
+     */
     public function validForm () {
         if(strlen($this->name) < 3)
             return "Имя слишком короткое";
@@ -33,6 +39,9 @@ class UserModel
         else return "ok";
     }
 
+    /**
+     * Функция добавления пользователя.
+     */
     public function addUser() {
         if (!empty($this->getUserByEmail($this->email))) return false;
         else {
@@ -50,33 +59,51 @@ class UserModel
         }
     }
 
+    /**
+     * Функция сбора свех пользователей.
+     */
     public function getUsers () {
         $result = $this->_db->query("SELECT * FROM `users` ORDER BY `id`");
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Функция определения текущего пользователя.
+     */
     public function getUser () {
         $email = $_SESSION['login'];
         $result = $this->_db->query("SELECT * FROM `users` WHERE `email` = '$email'");
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Функция получения пользователя по емайл.
+     */
     public function getUserByEmail ($email) {
         $result = $this->_db->query("SELECT * FROM `users` WHERE `email` = '$email'");
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Функция получения пользователя по ID.
+     */
     public function getUserById ($id) {
         $result = $this->_db->query("SELECT * FROM `users` WHERE `id` = '$id'");
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Функция логаут.
+     */
     public function logOut () {
         $_SESSION['login']=null;
         NotifMessage::setStatus('success', 'Вы вышли');
         header('location: /user/auth');
     }
 
+    /**
+     * Функция авторизации.
+     */
     public function userAuth ($email, $pass) {
         $result = $this->getUserByEmail($email);
         if (!empty($result)) {
