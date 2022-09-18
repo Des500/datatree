@@ -7,92 +7,29 @@ require_once 'public/layouts/header.php';
     <h2>Административная панель</h2>
     <p>&nbsp;</p>
     <div class="info">
-        <div class="left-block">
-            <input type="checkbox" id="menu-checkbox">
-            <nav class="menu" role="navigation">
-
-                <label for="menu-checkbox" class="btn toggle-btn" data-open="Дерево развернуть" data-close="Дерево свернуть" onclick>
-                </label>
-                <div class="links">
-                    <ul>
-                    <?php
-                    $level=0;
-                    foreach ($data['tree'] as $key => $item):
-                        ?>
-
-                        <?php
-                        if($level<$item['level']):
-                            ?>
-                            <input type="checkbox" id="input<?=$item['item']['id']?>" checked>
-                            <label for="input<?=$item['item']['id']?>" class="toggle-ul" onclick>
-                            </label>
-                            <ul id="ul<?=$item['item']['id']?>">
-
-                        <?php
-                        elseif ($level == $item['level']):
-                            ?>
-                            </li>
-                        <?php
-                        elseif ($level>$item['level']):
-                                ?>
-
-                            <?php
-                            for($i = $item['level']; $i<$level; $i++):
-                                ?>
-                                </ul>
-                                </li>
-                            <?php
-                            endfor;
-                                ?>
-
-                        <?php
-                        endif;
-                        $level = $item['level']
-                        ?>
-
-                        <li>
-                            <a href="/tree/adminpanel/<?=$item['item']['id']?>" class="menu-item">
-                                <?=$item['item']['id']?>|<?=$item['item']['parent_id']?>|<?=$item['item']['title']?>
-                            </a>
-
-                    <?php
-                    endforeach;
-                    ?>
-                    </ul>
-                </div>
-            </nav>
-
-
-        </div>
+        <?php
+            $inputChecked = 'checked';
+            include 'blocks/leftBlock.php'
+        ?>
         <div class="content-block">
-            <?php
-            if(!empty($data['itemdata'])):
-            ?>
-                <h2><?=$data['itemdata']['id']?>|<?=$data['itemdata']['title']?></h2>
-                <p><?=$data['itemdata']['description'] ?></p>
-                <div class="btn-group">
-                    <a href="/tree/edit/<?=$data['itemdata']['id']?>">
-                        <button class="btn">Редактировать</button>
-                    </a>
-                    <a href="/tree/add/<?=$data['itemdata']['id']?>">
-                        <button class="btn">Добавить</button>
-                    </a>
-                    <a href="/tree/delete/<?=$data['itemdata']['id']?>">
-                        <button class="btn btn-warning">Удалить</button>
-                    </a>
-                </div>
-            <?php
-            else:
-            ?>
-                <h2>Корневой каталог</h2>
-                <div class="btn-group">
-                    <a href="/tree/add/0">
-                        <button class="btn">Добавить</button>
-                    </a>
-                </div>
-            <?php
-            endif;
-            ?>
+
+            <div class="content-block">
+                <h2 id="element-title"></h2>
+                <p>&nbsp;</p>
+                <p id="element-desc"></p>
+            </div>
+
+            <div class="btn-group" id="element-btn" style="display: none">
+                <a href="" id="element-edit">
+                    <button class="btn">Редактировать</button>
+                </a>
+                <a href="" id="element-add">
+                    <button class="btn">Добавить</button>
+                </a>
+                <a href="" id="element-delete">
+                    <button class="btn btn-warning">Удалить</button>
+                </a>
+            </div>
         </div>
     </div>
 </section>

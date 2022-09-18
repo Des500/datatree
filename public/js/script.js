@@ -32,6 +32,7 @@ document.querySelectorAll('.links a').forEach(function (item) {
         if (itemId == 0) {
             document.querySelector('#element-title').innerHTML = 'Выберите элемент';
             document.querySelector('#element-desc').innerHTML = '';
+            document.querySelector('#element-btn').style.display = 'none';
             return;
         }
         else {
@@ -44,6 +45,12 @@ document.querySelectorAll('.links a').forEach(function (item) {
                     itemContent = JSON.parse(request.responseText);
                     document.querySelector('#element-title').innerHTML = itemContent['id'] + '|' + itemContent['title'];
                     document.querySelector('#element-desc').innerHTML = itemContent['description'];
+
+                    document.querySelector('#element-btn').style.display = '';
+                    document.querySelector('#element-edit').setAttribute('href', '/tree/edit/' + itemId);
+                    document.querySelector('#element-add').setAttribute('href', '/tree/add/' + itemId);
+                    document.querySelector('#element-delete').setAttribute('href', '/tree/delete/' + itemId);
+
                 }
             });
             request.send();
