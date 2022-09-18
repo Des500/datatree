@@ -7,16 +7,12 @@
         function __destruct() {}
 
         function __construct() {
-            // echo "Hello";
             $url = $this -> parseUrl();
-            // print_r(ucfirst($url[0]).'.php');
             if(file_exists('app/controllers/'.ucfirst($url[0]).'.php')) {
                 $this -> controller = ucfirst($url[0]);
                 unset($url[0]);
             }
             require_once 'app/controllers/'.$this -> controller.'.php';
-            // echo "$this->controller <br>";
-            // print_r($url);
             $this->controller = new $this->controller;
             if(isset($url[1])) {
                 if(method_exists($this->controller, $url[1])) {

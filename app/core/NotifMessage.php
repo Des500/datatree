@@ -2,7 +2,6 @@
 
 class NotifMessage
 {
-
     public static function setStatus ($status = 'success', $content = '') {
         if(($status!=='success')&&($status!=='error'))
             return false;
