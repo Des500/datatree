@@ -50,9 +50,23 @@
     </div>
 
 </header>
-<div class="container">
+<section class="container">
     <div id="notif-message">
-        <div class="error"><?=NotifMessage::getStatus('error')?></div>
-        <div class="success"><?=NotifMessage::getStatus('success')?></div>
+        <?php
+            $msgError = NotifMessage::getStatus('error');
+            if (!empty($msgError)):
+        ?>
+            <div class="error"><?=$msgError?></div>
+        <?php
+            endif;
+        ?>
+        <?php
+        $msgSuccess = NotifMessage::getStatus('success');
+        if (!empty($msgSuccess)):
+            ?>
+            <div class="success"><?=$msgSuccess?></div>
+        <?php
+        endif;
+        ?>
     </div>
-</div>
+</section>

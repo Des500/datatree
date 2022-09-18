@@ -8,14 +8,17 @@
                 $user = $this->Model('UserModel');
                 $user->setData($_POST['name'], $_POST['email'], $_POST['pass'], $_POST['re_pass']);
                 $isValid = $user->validForm();
-                if($isValid==='ok') {
-                    $data['message'] = $user->addUser();
-                }
-                else {
-                    $data['message'] = $isValid;
-                }
+                if($isValid === 'ok')
+                    if ($user->addUser()) {
+                        NotifMessage::setStatus('success', 'Пользователь успешно добавлен');
+                        $this->dashboard();
+                    }
+                    else
+                        NotifMessage::setStatus('error', 'такой пользователь уже существует');
+                else
+                    NotifMessage::setStatus('error', $isValid);
             }
-            $this->view('user/reg', $data);
+            $this->view('user/reg');
         }
         public function dashboard() {
             $user = $this->Model('UserModel');
@@ -30,7 +33,13 @@
             $data = [];
             if(isset($_POST['email'])) {
                 $user = $this->Model('UserModel');
-                $data['message'] = $user->userAuth($_POST['email'], $_POST['pass']);
+                $message = $user->userAuth($_POST['email'], $_POST['pass']);
+                if ($message === 'ok') {
+                    NotifMessage::setStatus('success', 'Вы авторизованы');
+                    $this->dashboard();
+                }
+                else
+                    NotifMessage::setStatus('error', $message);
             }
             $this->view('user/auth', $data);
         }

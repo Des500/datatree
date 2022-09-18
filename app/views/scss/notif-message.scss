@@ -1,0 +1,35 @@
+@import "vars";
+
+#notif-message {
+  color: #fff;
+  font-weight: 600;
+  .error, .success {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .error {
+    background-color: #ff5644;
+  }
+  .success {
+    background-color: #588a2a;
+  }
+  .form_closed {
+    display: none;
+  }
+  .form_opened {
+    display: block;
+  }
+  .form_open {
+    /*display: block;*/
+    transition: 0.5s; /*Скорость перехода состояния элемента*/
+    opacity: 0.95;
+  }
+  .form_close {
+    transition: 1s; /*Скорость перехода состояния элемента*/
+    opacity: 0;
+  }
+}

@@ -11,7 +11,6 @@ require_once 'public/layouts/header.php';
         <br>
         <input type="password" name="pass" placeholder="введите пароль" value="<?=$_POST['pass']?>">
         <br>
-        <div class="error"><?=$data['message']?></div>
         <button class="btn" id="send">Авторизоваться</button>
     </form>
 </section>

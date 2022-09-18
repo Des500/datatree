@@ -15,7 +15,6 @@ require_once 'public/layouts/header.php';
         <br>
         <input type="password" name="re_pass" placeholder="повторите пароль" value="<?=$_POST['pass']?>">
         <br>
-        <div class="error"><?=$data['message']?></div>
         <button class="btn" id="send">Зарегистрировать</button>
     </form>
 </section>

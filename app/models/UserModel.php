@@ -34,7 +34,7 @@ class UserModel
     }
 
     public function addUser() {
-        if (!empty($this->getUserByEmail($this->email))) return "такой пользователь уже существует";
+        if (!empty($this->getUserByEmail($this->email))) return false;
         else {
             $sql = 'INSERT INTO users(name, email, pass, role) VALUES (:name, :email, :pass, :role)';
             $query = $this->_db->prepare($sql);
@@ -46,7 +46,7 @@ class UserModel
                 'role' => 'user'
             ]);
             $this->setAuth($this->email);
-            return "Пользователь успешно добавлен";
+            return true;
         }
     }
 
@@ -81,7 +81,7 @@ class UserModel
         $result = $this->getUserByEmail($email);
         if (!empty($result)) {
             if(password_verify($pass, $result['pass'])) {
-                $this->setAuth($result['email']);
+                return $this->setAuth($result['email']);
             }
             else return "Неверный пароль";
         }
@@ -90,8 +90,7 @@ class UserModel
 
     private function setAuth ($email) {
         $_SESSION['login'] = $email;
-        NotifMessage::setStatus('success', 'Вы авторизованы');
-        header('location: /user/dashboard');
+        return 'ok';
     }
 
 }

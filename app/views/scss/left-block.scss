@@ -1,0 +1,107 @@
+@import "vars";
+
+.left-block {
+  width: 30%;
+  .menu {
+    width: 100%;
+  }
+  input[type="checkbox"] {
+    display: none;
+  }
+  .links {
+    display: block;
+    ul {
+      padding-right: 2%;
+      padding-left: 2%;
+      li {
+        width: 95%;
+        text-align: left;
+        list-style: none;
+        display: inline-block;
+        padding-top: 5px;
+        a {
+          color: #333;
+          cursor: pointer;
+          &:hover {
+            color: #ff5644;
+          }
+        }
+      }
+    }
+    input[type="checkbox"] {
+      + label {
+        padding-right: 10px;
+        cursor: pointer;
+        &:before {
+          content: '\276F';
+          float: right;
+        }
+        + ul {
+          height: 0;
+          opacity: 0;
+          overflow: hidden;
+        }
+      }
+      &:checked {
+        + label:before {
+          transition: transform 500ms;
+          transform: rotate(90deg);
+        }
+        + label + ul {
+          height: auto;
+          opacity: 1;
+          transition: all 500ms;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $screenWidth) {
+  .left-block {
+    width: 100%;
+    display: block;
+    nav {
+      position: relative;
+      width: 100%;
+    }
+    .links {
+      border: 1px solid silver;
+      height: 0;
+      overflow: hidden;
+      z-index: 100;
+      position: absolute;
+      top: 50px;
+      left: 5px;
+      border-radius: 5px;
+      background-color: #fafafa;
+      opacity: 0;
+      width: 100%;
+      transition: all 500ms;
+      //padding: 10px 20px 10px 40px;
+    }
+    .toggle-btn {
+      text-align: center;
+      padding-top: 10px;
+      height: 30px;
+      padding-bottom: 0px;
+      display: block;
+      cursor: pointer;
+      width: 180px;
+      &:after {
+        content: attr(data-open);
+        display: block;
+      }
+    }
+    #menu-checkbox:checked + nav.menu {
+      .links {
+        height: auto;
+        opacity: 1;
+        transition: all 500ms;
+      }
+      .toggle-btn:after {
+        content: attr(data-close);
+      }
+    }
+  }
+}

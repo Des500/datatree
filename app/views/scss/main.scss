@@ -1,3 +1,5 @@
+@import "vars";
+
 * {
   padding: 0;
   margin: 0;
@@ -31,7 +33,7 @@ a {
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: $screenWidth) {
   .container {
     padding-left: 5%;
     padding-right: 5%;
@@ -119,16 +121,6 @@ header {
     width: 200px;
     background-color: #ff5644;
   }
-  .btn.basket {
-    width: 95%;
-    background-color: #fff;
-    color: #333;
-    margin-bottom: 10px;
-    border: 1px solid #333;
-  }
-  > .menu {
-
-  }
 }
 
 .btn-group {
@@ -143,38 +135,6 @@ header {
   }
   .btn-warning {
     background-color: #ff5644;
-  }
-}
-
-#notif-message {
-  font-weight: 600;
-  margin-top: 10px;
-  width: 50%;
-  height: 30px;
-  .error, .success {
-    display: block;
-  }
-  .error {
-    color: #ff5644;
-  }
-  .success {
-    color: #588a2a;
-  }
-
-  .form_closed {
-    display: none;
-  }
-  .form_opened {
-    display: block;
-  }
-  .form_open {
-    /*display: block;*/
-    transition: 0.5s; /*Скорость перехода состояния элемента*/
-    opacity: 0.95;
-  }
-  .form_close {
-    transition: 1s; /*Скорость перехода состояния элемента*/
-    opacity: 0;
   }
 }
 
@@ -193,47 +153,15 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  .left-block {
-    width: 30%;
-    .menu {
-      width: 100%;
-    }
-  }
-  .links {
-    display: block;
-
-    ul {
-      //background-color: #fafafa;
-      //border-bottom: 1px solid silver;
-      //border-radius: 5px;
-      //padding: 5px 0px;
-      padding-right: 2%;
-      padding-left: 2%;
-      li {
-        width: 95%;
-        text-align: left;
-        list-style: none;
-        display: inline-block;
-        padding-top: 5px;
-        a {
-          color: #333;
-          cursor: pointer;
-          &:hover {
-            color: #ff5644;
-          }
-        }
-      }
-    }
-  }
-  .content-block {
-    margin-left: 10px;
-    margin-top: 30px;
-    float: left;
-  }
   .btn {
     margin-top: 15px;
     //margin-left: 0;
     width: 150px;
+  }
+}
+@media (max-width: $screenWidth) {
+  .info {
+    display: block;
   }
 }
 
