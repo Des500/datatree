@@ -11,6 +11,6 @@
             require_once 'app/views/' . $view . '.php';
         }
         protected function redirect($view) {
-            header($view);
+            header('location: /'.$view);
         }
     }

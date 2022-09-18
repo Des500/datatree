@@ -69,11 +69,13 @@ class Tree extends Controller
             $valid = $dataTree->validForm();
             if($valid === 'ok') {
                 NotifMessage::setStatus('success', $dataTree->save());
-                $this->redirect('location: /tree/adminpanel/'.$_POST['id']);
+                $this->redirect('tree/adminpanel/'.$_POST['id']);
+                return true;
             }
             else {
                 NotifMessage::setStatus('error', $valid);
-                $this->redirect('location: /tree/edit/'.$_POST['id']);
+                $this->redirect('tree/edit/'.$_POST['id']);
+                return false;
             }
         }
     }
@@ -90,11 +92,13 @@ class Tree extends Controller
             $dataTree->description = $_POST['description'];
             if($dataTree->validForm() === 'ok') {
                 NotifMessage::setStatus('success', $dataTree->save());
-                $this->redirect('location: /tree/adminpanel/'.$parent_id);
+                $this->redirect('tree/adminpanel/'.$parent_id);
+                return true;
             }
             else {
                 NotifMessage::setStatus('error', $valid);
-                $this->redirect('location: /tree/adminpanel/');
+                $this->redirect('tree/adminpanel/');
+                return false;
             }
         }
     }
@@ -105,7 +109,8 @@ class Tree extends Controller
             $dataTree = $this->Model('TreeModel');
             $parent_id = $dataTree->getElement($id)['parent_id'];
             NotifMessage::setStatus('success', $dataTree->delete($id));
-            $this->redirect('location: /tree/adminpanel/' . $parent_id);
+            $this->redirect('tree/adminpanel/' . $parent_id);
+            return true;
         }
      }
 
@@ -113,7 +118,7 @@ class Tree extends Controller
          $user = $this->Model('UserModel');
          if($user->getUser()['role'] !== 'admin') {
              NotifMessage::setStatus('error', 'У вас нет прав на изменение контента');
-             $this->redirect('location: /');
+             $this->redirect('');
              return false;
          }
          else return true;

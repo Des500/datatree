@@ -11,7 +11,8 @@
                 if($isValid === 'ok')
                     if ($user->addUser()) {
                         NotifMessage::setStatus('success', 'Пользователь успешно добавлен');
-                        $this->dashboard();
+                        $this->redirect('user/dashboard');
+                        return true;
                     }
                     else
                         NotifMessage::setStatus('error', 'такой пользователь уже существует');
@@ -36,11 +37,13 @@
                 $message = $user->userAuth($_POST['email'], $_POST['pass']);
                 if ($message === 'ok') {
                     NotifMessage::setStatus('success', 'Вы авторизованы');
-                    $this->dashboard();
+                    $this->redirect('user/dashboard');
+                    return true;
                 }
-                else
+                else {
                     NotifMessage::setStatus('error', $message);
+                }
             }
-            $this->view('user/auth', $data);
+            $this->view('user/auth');
         }
     }
