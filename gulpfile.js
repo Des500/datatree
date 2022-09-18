@@ -43,5 +43,5 @@ gulp.task('watchAll', function() {
     gulp.watch(['app/views/scss/*.scss',
           'app/views/js/*.js',
         ]
-    , gulp.series('build_css','clone-js'));
+    , gulp.series('build_css'));
 })
