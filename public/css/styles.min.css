@@ -23,6 +23,7 @@ a {
   color: #333;
   text-decoration: none;
   -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
   transition: all 300ms ease;
 }
 a:hover {
@@ -53,10 +54,12 @@ a:hover {
   color: #fff;
   cursor: pointer;
   -webkit-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
   transition: all 600ms ease;
 }
 .btn:hover {
   -webkit-transform: scale(1.05) translateY(-5px);
+  -ms-transform: scale(1.05) translateY(-5px);
   transform: scale(1.05) translateY(-5px);
   -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
@@ -210,10 +213,12 @@ footer .social > i {
   cursor: pointer;
   color: #333;
   -webkit-transition: all 600ms ease;
+  -o-transition: all 600ms ease;
   transition: all 600ms ease;
 }
 footer .social > i:hover {
   -webkit-transform: translateY(-5px) scale(1.2);
+  -ms-transform: translateY(-5px) scale(1.2);
   transform: translateY(-5px) scale(1.2);
 }
 
@@ -296,15 +301,18 @@ footer .social > i:hover {
 .left-block .links input[type=checkbox]:checked + label:before {
   -webkit-transition: -webkit-transform 500ms;
   transition: -webkit-transform 500ms;
+  -o-transition: transform 500ms;
   transition: transform 500ms;
   transition: transform 500ms, -webkit-transform 500ms;
   -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 .left-block .links input[type=checkbox]:checked + label + ul {
   height: auto;
   opacity: 1;
   -webkit-transition: all 500ms;
+  -o-transition: all 500ms;
   transition: all 500ms;
 }
 
@@ -330,6 +338,7 @@ footer .social > i:hover {
     opacity: 0;
     width: 100%;
     -webkit-transition: all 500ms;
+    -o-transition: all 500ms;
     transition: all 500ms;
   }
   .left-block .toggle-btn {
@@ -349,6 +358,7 @@ footer .social > i:hover {
     height: auto;
     opacity: 1;
     -webkit-transition: all 500ms;
+    -o-transition: all 500ms;
     transition: all 500ms;
   }
   .left-block #menu-checkbox:checked + nav.menu .toggle-btn:after {
@@ -394,11 +404,13 @@ footer .social > i:hover {
 #notif-message .form_open {
   /*display: block;*/
   -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
   transition: 0.5s; /*Скорость перехода состояния элемента*/
   opacity: 0.95;
 }
 #notif-message .form_close {
   -webkit-transition: 1s;
+  -o-transition: 1s;
   transition: 1s; /*Скорость перехода состояния элемента*/
   opacity: 0;
 }

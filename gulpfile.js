@@ -22,14 +22,14 @@ gulp.task('clone-js', function() {
   });
 
   gulp.task('sassToCSS', function() {
-    return gulp.src('app/views/scss/**/*.scss')
+    return gulp.src('app/views/scss/styles.scss')
       .pipe(sass({
         errorLogToConsole: true
         // ,outputStyle: 'compressed'
       }))
       .on('error', console.error.bind(console))
       .pipe(autoprefixer({
-        overrideBrowserslist: ['last 2 versions'],
+        overrideBrowserslist: ['last 5 versions'],
         cascade: false
       }))
       // .pipe(cleanCSS())
