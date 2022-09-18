@@ -11,7 +11,7 @@ require_once 'public/layouts/header.php';
     ?>
 
     <div class="content-block">
-        <h2 id="element-title"></h2>
+        <h2 id="element-title">Выберите элемент</h2>
         <p>&nbsp;</p>
         <p id="element-desc"></p>
     </div>
