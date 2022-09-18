@@ -8,12 +8,9 @@
         }
 
         protected function view($view, $data = []) {
-            // echo '../app/views/' . $view . '.php';
             require_once 'app/views/' . $view . '.php';
         }
         protected function redirect($view) {
-            // echo '../app/views/' . $view . '.php';
             header($view);
-//            require_once 'app/views/' . $view . '.php';
         }
     }

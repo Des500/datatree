@@ -52,10 +52,7 @@ require_once 'public/layouts/header.php';
 
                         <li>
                             <a href="/tree/adminpanel/<?=$item['item']['id']?>" class="menu-item">
-                            <?php
-//                            for ($i = 0; $i < $item['level']; $i++) echo '-';
-                            ?>
-                            <?=$item['item']['id']?>|<?=$item['item']['parent_id']?>|<?=$item['item']['title']?>
+                                <?=$item['item']['id']?>|<?=$item['item']['parent_id']?>|<?=$item['item']['title']?>
                             </a>
 
                     <?php

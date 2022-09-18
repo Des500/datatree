@@ -12,8 +12,7 @@ class UserModel
         $this->_db = DB::getInstence();
     }
 
-    public function setData($name, $email, $pass, $re_pass)
-    {
+    public function setData($name, $email, $pass, $re_pass) {
         $this->name = $name;
         $this->email = $email;
         $this->pass = $pass;
@@ -81,7 +80,6 @@ class UserModel
     public function userAuth ($email, $pass) {
         $result = $this->getUserByEmail($email);
         if (!empty($result)) {
-//            $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
             if(password_verify($pass, $result['pass'])) {
                 $this->setAuth($result['email']);
             }
