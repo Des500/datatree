@@ -100,6 +100,7 @@ class TreeModel
      * Функция сбора дерева данных родительского элемента (рекурсивная).
      *
      * @param  int  $id - id элемента
+     * @return array $item - найденный элемент
      */
     public function getElement($id) {
         $result = $this->_db->query("SELECT * FROM `datatree` WHERE `id` = '$id'");
@@ -109,7 +110,6 @@ class TreeModel
     /**
      * Функция добавления/обновления элемента.
      *
-     * @param  int  $id - id элемента
      */
     public function save() {
         if (!empty($this->getElement($this->id))) {
@@ -137,7 +137,6 @@ class TreeModel
     /**
      * Функция валидации формы.
      *
-     * @param  int  $id - id элемента
      */
     public function validForm () {
         if (strlen($this->title) < 3)
@@ -153,6 +152,7 @@ class TreeModel
      * Функция удаления элемента с веткой.
      *
      * @param  int  $id - id элемента
+     * @return string - сообщение
      */
     public function delete ($id) {
         $deletingId = $this->getTree(0,$id, false)['excludedId'];
