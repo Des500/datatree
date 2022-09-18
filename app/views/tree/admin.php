@@ -1,5 +1,5 @@
 <?php
-$title = "Дерево данных";
+$title = "админ панель";
 require_once 'public/layouts/header.php';
 ?>
 

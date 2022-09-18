@@ -7,7 +7,7 @@
     <meta name="description" content="<?=$title?>">
     <link rel="stylesheet" href="/public/css/styles.min.css?<?=time()?>">
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
-    <title><?=$title?></title>
+    <title>Дерево данных - <?=$title?></title>
 </head>
 <body>
 <header>
@@ -20,7 +20,7 @@
         <div class="logo">
             <a href="/">
                 <img src="/public/images/logo.svg" alt="">
-                <span> Некое дерево</span>
+                <span>Дерево данных</span>
             </a>
         </div>
         <div class="auth-checkout">

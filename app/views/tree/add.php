@@ -1,5 +1,5 @@
 <?php
-$title = "Дерево данных - Добавление элемента";
+$title = "добавление элемента";
 require_once 'public/layouts/header.php';
 ?>
 

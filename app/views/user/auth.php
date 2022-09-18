@@ -1,5 +1,5 @@
 <?php
-$title = "Дерево данных - авторизация";
+$title = "авторизация";
 require_once 'public/layouts/header.php';
 ?>
 
