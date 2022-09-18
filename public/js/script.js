@@ -39,7 +39,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.querySelector('#element-title').innerHTML = itemContent['id'] + '|' + itemContent['title'];
                 document.querySelector('#element-desc').innerHTML = itemContent['description'];
 
-                document.querySelector('#element-btn').style.display = '';
+                document.querySelector('#element-edit').style.display = '';
+                document.querySelector('#element-add').style.display = '';
+                document.querySelector('#element-delete').style.display = '';
+
                 document.querySelector('#element-edit').setAttribute('href', '/tree/edit/' + itemId);
                 document.querySelector('#element-add').setAttribute('href', '/tree/add/' + itemId);
                 document.querySelector('#element-delete').setAttribute('href', '/tree/delete/' + itemId);
@@ -56,8 +59,12 @@ document.addEventListener('DOMContentLoaded', function(){
             itemId = item.id.split('-')[1];
             if (itemId == 0) {
                 document.querySelector('#element-title').innerHTML = 'Выберите элемент';
-                document.querySelector('#element-desc').innerHTML = '';
-                document.querySelector('#element-btn').style.display = 'none';
+                document.querySelector('#element-desc').innerHTML = 'или добавьте по кнопке ниже';
+
+                document.querySelector('#element-edit').style.display = 'none';
+                document.querySelector('#element-delete').style.display = 'none';
+
+                document.querySelector('#element-add').setAttribute('href', '/tree/add/0');
                 return;
             }
             else {

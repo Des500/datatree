@@ -13,20 +13,18 @@ require_once 'public/layouts/header.php';
         ?>
         <div class="content-block">
 
-            <div class="content-block">
-                <h2 id="element-title"></h2>
-                <p>&nbsp;</p>
-                <p id="element-desc"></p>
-            </div>
+            <h2 id="element-title">Выберите элемент</h2>
+            <p>&nbsp;</p>
+            <p id="element-desc">или добавьте по кнопке ниже</p>
 
-            <div class="btn-group" id="element-btn" style="display: none">
-                <a href="" id="element-edit">
+            <div class="btn-group" id="element-btn">
+                <a href="" id="element-edit" style="display: none">
                     <button class="btn">Редактировать</button>
                 </a>
-                <a href="" id="element-add">
+                <a href="/tree/add/0" id="element-add">
                     <button class="btn">Добавить</button>
                 </a>
-                <a href="" id="element-delete">
+                <a href="" id="element-delete" style="display: none">
                     <button class="btn btn-warning">Удалить</button>
                 </a>
             </div>

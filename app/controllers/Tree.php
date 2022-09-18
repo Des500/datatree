@@ -57,50 +57,35 @@ class Tree extends Controller
         $this->view('tree/add', $data);
     }
 
-    public function update() {
+    public function store() {
         $this->userRoleCheck();
-
+        $isNew = (int)$_POST['isnew'];
         $dataTree = $this->Model('TreeModel');
-        if(isset($_POST['id'])) {
+        if(isset($_POST['title'])) {
+            $parent_id = explode('|',$_POST['parent_id'])[1];
             $dataTree->id = $_POST['id'];
-            $dataTree->parent_id = explode('|',$_POST['parent_id'])[1];
-            $dataTree->title = $_POST['title'];
-            $dataTree->description = $_POST['description'];
+            $dataTree->parent_id = $parent_id;
+            $dataTree->title = trim($_POST['title']);
+            $dataTree->description = trim($_POST['description']);
             $valid = $dataTree->validForm();
             if($valid === 'ok') {
                 NotifMessage::setStatus('success', $dataTree->save());
-                $this->redirect('tree/adminpanel/'.$_POST['id']);
+                if ($isNew == 0)
+                    $this->redirect('tree/adminpanel/'.$_POST['id']);
+                else
+                    $this->redirect('tree/adminpanel/'.$parent_id);
                 return true;
             }
             else {
                 NotifMessage::setStatus('error', $valid);
-                $this->redirect('tree/edit/'.$_POST['id']);
+                if ($isNew == 0)
+                    $this->redirect('tree/edit/'.$_POST['id']);
+                else
+                    $this->redirect('tree/add/'.$parent_id);
                 return false;
             }
         }
-    }
-
-    public function store() {
-         $this->userRoleCheck();
-
-        $dataTree = $this->Model('TreeModel');
-        if(isset($_POST['parent_id'])) {
-            $parent_id = explode('|',$_POST['parent_id'])[1];
-            $dataTree->id = 0;
-            $dataTree->parent_id = $parent_id;
-            $dataTree->title = $_POST['title'];
-            $dataTree->description = $_POST['description'];
-            if($dataTree->validForm() === 'ok') {
-                NotifMessage::setStatus('success', $dataTree->save());
-                $this->redirect('tree/adminpanel/'.$parent_id);
-                return true;
-            }
-            else {
-                NotifMessage::setStatus('error', $valid);
-                $this->redirect('tree/adminpanel/');
-                return false;
-            }
-        }
+        return false;
     }
 
     public function delete($id) {
