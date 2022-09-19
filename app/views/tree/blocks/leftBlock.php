@@ -2,7 +2,7 @@
     <input type="checkbox" id="menu-checkbox">
     <nav class="menu" role="navigation">
 
-        <label for="menu-checkbox" class="btn toggle-btn" data-open="Дерево развернуть" data-close="Дерево свернуть" onclick>
+        <label for="menu-checkbox" class="btn toggle-btn" data-open="Дерево развернуть" data-close="Дерево свернуть">
         </label>
         <div class="links">
             <ul>
@@ -26,7 +26,7 @@
                         endif;
                         ?>
                     >
-                    <label for="input<?=$item['item']['id']?>" class="toggle-ul" onclick>
+                    <label for="input<?=$item['item']['id']?>" class="toggle-ul">
                     </label>
                     <ul id="ul<?=$item['item']['id']?>">
 

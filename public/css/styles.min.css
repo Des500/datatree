@@ -270,13 +270,15 @@ footer .social > i:hover {
 .info .left-block .links ul {
   padding-right: 2%;
   padding-left: 2%;
+  -webkit-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
 }
 .info .left-block .links ul li {
   width: 95%;
   text-align: left;
   list-style: none;
   display: inline-block;
-  padding-top: 5px;
 }
 .info .left-block .links ul li a {
   color: #333;
@@ -292,28 +294,27 @@ footer .social > i:hover {
 .info .left-block .links input[type=checkbox] + label:before {
   content: "❯";
   float: right;
-}
-.info .left-block .links input[type=checkbox] + label + ul {
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-}
-.info .left-block .links input[type=checkbox]:checked + label:before {
   -webkit-transition: -webkit-transform 500ms;
   transition: -webkit-transform 500ms;
   -o-transition: transform 500ms;
   transition: transform 500ms;
   transition: transform 500ms, -webkit-transform 500ms;
+}
+.info .left-block .links input[type=checkbox] + label + ul {
+  height: 0;
+  padding-top: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+.info .left-block .links input[type=checkbox]:checked + label:before {
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 .info .left-block .links input[type=checkbox]:checked + label + ul {
-  height: auto;
+  height: 100%;
+  padding-top: 5px;
   opacity: 1;
-  -webkit-transition: all 500ms;
-  -o-transition: all 500ms;
-  transition: all 500ms;
 }
 
 @media (max-width: 900px) {
@@ -357,9 +358,6 @@ footer .social > i:hover {
   .info .left-block #menu-checkbox:checked + nav.menu .links {
     height: auto;
     opacity: 1;
-    -webkit-transition: all 500ms;
-    -o-transition: all 500ms;
-    transition: all 500ms;
   }
   .info .left-block #menu-checkbox:checked + nav.menu .toggle-btn:after {
     content: attr(data-close);
