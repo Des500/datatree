@@ -65,10 +65,10 @@ class Tree extends Controller
     public function store() {
         if(!$this->userRoleCheck()) return false;
 
-        $isNew = (int)$_POST['isnew'];
-        $dataTree = $this->Model('TreeModel');
         if(isset($_POST['title'])) {
+            $isNew = (int)$_POST['isnew'];
             $parent_id = explode('|',$_POST['parent_id'])[1];
+            $dataTree = $this->Model('TreeModel');
             $dataTree->id = $_POST['id'];
             $dataTree->parent_id = $parent_id;
             $dataTree->title = trim($_POST['title']);
@@ -91,6 +91,8 @@ class Tree extends Controller
                 return false;
             }
         }
+        NotifMessage::setStatus('error', 'Не указан элемент');
+        $this->redirect('tree/adminpanel');
         return false;
     }
 
