@@ -20,7 +20,7 @@ class Tree extends Controller
     }
 
     public function adminpanel ($id = 0) {
-        $this->userRoleCheck();
+        if(!$this->userRoleCheck()) return false;
 
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
@@ -32,9 +32,14 @@ class Tree extends Controller
         $this->view('tree/admin', $data);
     }
 
-    public function edit($id) {
-        $this->userRoleCheck();
+    public function edit( $id = 0) {
+        if(!$this->userRoleCheck()) return false;
 
+        if ($id == 0) {
+            NotifMessage::setStatus('error', 'Не указан элемент');
+            $this->redirect('tree/adminpanel');
+            return false;
+        }
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
         $tree = $dataTree->getTree(0, $id)['items'];
@@ -45,8 +50,8 @@ class Tree extends Controller
         $this->view('tree/edit', $data);
     }
 
-    public function add($parent_id) {
-        $this->userRoleCheck();
+    public function add() {
+        if(!$this->userRoleCheck()) return false;
 
         $dataTree = $this->Model('TreeModel');
         $tree = $dataTree->getTree()['items'];
@@ -58,7 +63,8 @@ class Tree extends Controller
     }
 
     public function store() {
-        $this->userRoleCheck();
+        if(!$this->userRoleCheck()) return false;
+
         $isNew = (int)$_POST['isnew'];
         $dataTree = $this->Model('TreeModel');
         if(isset($_POST['title'])) {
@@ -88,9 +94,14 @@ class Tree extends Controller
         return false;
     }
 
-    public function delete($id) {
-         if($this->userRoleCheck())
+    public function delete($id = 0) {
+        if($this->userRoleCheck())
          {
+             if ($id == 0) {
+                 NotifMessage::setStatus('error', 'Не указан элемент');
+                 $this->redirect('tree/adminpanel');
+                 return false;
+             }
             $dataTree = $this->Model('TreeModel');
             $parent_id = $dataTree->getElement($id)['parent_id'];
             NotifMessage::setStatus('success', $dataTree->delete($id));
