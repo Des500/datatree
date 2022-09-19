@@ -17,14 +17,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // сокрытие информационных билбордов
     document.querySelectorAll('#notif-message div').forEach(function (item) {
-        let original_class = item.className;
         setTimeout( function () {
-            item.className = original_class+' form_close';
-        }, 5000);
+            item.classList.add('form_close');
+        }, 3000);
         setTimeout( function () {
             item.className = 'form_closed';
             item.innerHTML = '';
-        }, 6000);
+        }, 4000);
     });
 
     // получение и вывод информации об элементе ajax запрос
