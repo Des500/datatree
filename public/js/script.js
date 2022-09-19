@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // Проверка полей формы элемента
     function checkTreeForm () {
-        valid = true;
+        let valid = true;
         if (document.SendForm.title.value.length < 3) {
             alert('Название должно быть больше 3 символов');
             valid =false;
