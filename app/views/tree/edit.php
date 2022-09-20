@@ -8,7 +8,7 @@ require_once 'public/layouts/header.php';
     <form action="/tree/store/" name="SendForm" method="post" class="form-control" onsubmit="return checkTreeForm();">
         <label for="parent_id">Введите родителя</label>
         <select name="parent_id" placeholder="введите родителя" value="<?=$data['itemdata']['parent_id']?>">
-        <option selected disabled value="">Выбрать родителя...</option>
+        <option disabled value="">Выбрать родителя...</option>
         <?php
         foreach ($data['tree'] as $item):
             ?>
