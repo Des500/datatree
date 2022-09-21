@@ -87,9 +87,7 @@ class TreeModel
                 $this->getChildrenTree($item, $level, $excludeId);
             }
             else {
-                array_push($this->treeArray['excludedId'], $level, $rootItem['id']);
-                print_r($this->treeArray['excludedId']);
-                echo '<hr>';
+                array_push($this->treeArray['excludedId'], $item['id']);
                 $this->getChildrenTree($item, $level, $item['id']);
             }
         }
@@ -158,8 +156,6 @@ class TreeModel
     public function delete ($id) {
         if ($id <= 1) return false;
         $deletingId = $this->getTree(1,$id, false)['excludedId'];
-        die();
-
         foreach ($deletingId as $item) {
             $sql = 'DELETE FROM datatree_alg02 WHERE id = :id';
             $query = $this->_db->prepare($sql);
