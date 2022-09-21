@@ -15,7 +15,8 @@ require_once 'public/layouts/header.php';
 
             <h2 id="element-title">Выберите элемент</h2>
             <p>&nbsp;</p>
-            <p id="element-desc">или добавьте по кнопке ниже</p>
+            <p id="element-desc"></p>
+            <p id="element-desc-null">или добавьте по кнопке ниже</p>
 
             <div class="btn-group" id="element-btn">
                 <a href="" id="element-edit" style="display: none">
