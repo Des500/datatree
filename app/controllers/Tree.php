@@ -50,7 +50,7 @@ class Tree extends Controller
         $this->view('tree/edit', $data);
     }
 
-    public function add() {
+    public function add($parent_id = 0) {
         if(!$this->userRoleCheck()) return false;
 
         $dataTree = $this->Model('TreeModel');
