@@ -1,15 +1,16 @@
 # Проект Дерево данных
 ## https://datatree.w101.ru/
 ## База данных
+в данной ветке изменен способ хранения дочерних элементов
 ### users
 id     - primary index<br>
 name   - имя<br>
 email  - емайл, уникальный, логин<br>
 pass   - пароль, хэш<br>
 role   - права пользователя (user/admin) <br>
-### datatree
+### datatree_alg02
 id          - primary index<br>
-parent_id   - id родительского элемента<br>
+children_id - id дочерних элементов 1-го уровня через запятую<br>
 title       - название<br>
 description - описание<br>
 
