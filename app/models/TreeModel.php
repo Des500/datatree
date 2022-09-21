@@ -177,7 +177,7 @@ class TreeModel
         return 'Ветка удалена';
     }
 
-    private function getParentByChildrenId ($children_id) {
+    public function getParentByChildrenId ($children_id) {
         $result = $this->_db->query("SELECT * FROM `$this->table` WHERE `children_id` REGEXP '$children_id'");
         return $result->fetch(PDO::FETCH_ASSOC);
     }

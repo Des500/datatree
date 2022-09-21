@@ -14,7 +14,7 @@ require_once 'public/layouts/header.php';
             ?>
             <option
                     <?php
-                        if($item['item']['id'] == $data['itemdata']['parent_id']) echo 'selected';
+                        if($item['item']['id'] == $data['parent_id']) echo 'selected';
                     ?>
                 >
                 <?php

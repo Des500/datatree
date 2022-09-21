@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 itemContent = JSON.parse(request.responseText);
                 document.querySelector('#element-title').innerHTML = itemContent['id'] + '|' + itemContent['title'];
                 document.querySelector('#element-desc').innerHTML = itemContent['description'];
+                document.querySelector('#element-desc-null').innerHTML = '';
 
                 document.querySelector('#element-edit').style.display = '';
                 document.querySelector('#element-add').style.display = '';
@@ -58,7 +59,8 @@ document.addEventListener('DOMContentLoaded', function(){
             itemId = item.id.split('-')[1];
             if (itemId == 0) {
                 document.querySelector('#element-title').innerHTML = 'Выберите элемент';
-                document.querySelector('#element-desc').innerHTML = 'или добавьте по кнопке ниже';
+                document.querySelector('#element-desc').innerHTML = '';
+                document.querySelector('#element-desc-null').innerHTML = 'или добавьте по кнопке ниже';
 
                 document.querySelector('#element-edit').style.display = 'none';
                 document.querySelector('#element-delete').style.display = 'none';

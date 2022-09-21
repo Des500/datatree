@@ -46,15 +46,17 @@ class Tree extends Controller
         }
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
+        $parent_id = $dataTree->getParentByChildrenId($id)['id'];
         $tree = $dataTree->getTree(1, $id)['items'];
         $data = [
             'tree' =>  $tree,
-            'itemdata' =>  $itemData
+            'itemdata' =>  $itemData,
+            'parent_id' => $parent_id
         ];
         $this->view('tree/edit', $data);
     }
 
-    public function add() {
+    public function add($parent_id = 0) {
         if(!$this->userRoleCheck()) return false;
 
         $dataTree = $this->Model('TreeModel');
