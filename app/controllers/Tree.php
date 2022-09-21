@@ -22,6 +22,10 @@ class Tree extends Controller
     public function adminpanel ($id = 0) {
         if(!$this->userRoleCheck()) return false;
 
+        if ($id == 1) {
+            $this->redirect('tree/adminpanel');
+            return false;
+        }
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
         $tree = $dataTree->getTree()['items'];
@@ -42,7 +46,7 @@ class Tree extends Controller
         }
         $dataTree = $this->Model('TreeModel');
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
-        $tree = $dataTree->getTree(0, $id)['items'];
+        $tree = $dataTree->getTree(1, $id)['items'];
         $data = [
             'tree' =>  $tree,
             'itemdata' =>  $itemData
@@ -68,8 +72,9 @@ class Tree extends Controller
         if(isset($_POST['title'])) {
             $isNew = (int)$_POST['isnew'];
             $parent_id = explode('|',$_POST['parent_id'])[1];
+            $parent_id = $parent_id == 0 ? 1: $parent_id;
             $dataTree = $this->Model('TreeModel');
-            $dataTree->id = $_POST['id'];
+            $dataTree->id = (int)$_POST['id'];
             $dataTree->parent_id = $parent_id;
             $dataTree->title = trim($_POST['title']);
             $dataTree->description = trim($_POST['description']);
