@@ -6,16 +6,13 @@ class TreeModel
 
     /**
      * $treeArray -> дерево данных
-     * [items] - 2-мерный массив дерева данных без исключенных id
+     * [items] - массив дерева данных без исключенных id
      * [excludedId] - массив исключенных id
      */
     private $treeArray = [
         'items' => [],
         'excludedId' => []
     ];
-    private $queryArray= [];
-
-    private $table = 'datatree_alg02';
 
     public $id;
     public $parent_id;
@@ -37,8 +34,6 @@ class TreeModel
      * [excludedId] - массив исключенных id
      */
     public function getTree ($id=1, $excludeId = 0, $addRootLevel = true) {
-        $query = $this->_db->query("SELECT * FROM $this->table ORDER BY `id`");
-        $this->queryArray = $query->fetchAll(PDO::FETCH_ASSOC);
         if($addRootLevel)
             $this->treeArray['items'][0] = [
                 'level' => 0,
@@ -48,22 +43,18 @@ class TreeModel
                     'description' => 'Выберите элемент'
                 ]
             ];
-        echo $id;
-        echo '<hr>';
         $this->getChildrenTree($this->getElement($id),0,$excludeId);
         if(( $excludeId>0 ) && ( isset($this->treeArray['items'][$excludeId]) )) {
             unset($this->treeArray['items'][$excludeId]);
             array_unshift($this->treeArray['excludedId'], $excludeId);
         }
-        echo '<hr>';
-        print_r($this->treeArray);
         return $this->treeArray;
     }
 
     /**
-     * Функция сбора дочерних элементов 1 го уровня.
+     * Функция сбора дочерних элементов.
      *
-     * @param  int  $parent_id - id родительского элемента, по которому собираются дочерние (для корня - родитель 0)
+     * @param  array  $rootItem - родительский элемент, по которому собираются дочерние
      * @return array $items - массив дочерних элементов
      */
     public function getChildrens ($rootItem) {
@@ -80,8 +71,8 @@ class TreeModel
     /**
      * Функция сбора дерева данных родительского элемента (рекурсивная).
      *
-     * @param  int  $parent_id - id родительского элемента, по которому собираются дочерние (для корня - родитель 0)
-     * @param  int  $level - родительский уровень (для корня родитель - 0)
+     * @param  int  $rootItem - родительский элемент, по которому собираются дочерние
+     * @param  int  $level - родительский уровень (для корня - 0)
      * @param  int  $excludeId - id элемента, ветку которого требуется исключить (невозможно перенести родительский элемент в ветку дочернего)
      */
     public function getChildrenTree($rootItem = '', $level = 0, $excludeId = 0) {
@@ -96,8 +87,10 @@ class TreeModel
                 $this->getChildrenTree($item, $level, $excludeId);
             }
             else {
-                array_push($this->treeArray['excludedId'], $rootItem['id']);
-                $this->getChildrenTree($item, $level, $rootItem['id']);
+                array_push($this->treeArray['excludedId'], $level, $rootItem['id']);
+                print_r($this->treeArray['excludedId']);
+                echo '<hr>';
+                $this->getChildrenTree($item, $level, $item['id']);
             }
         }
     }
@@ -109,7 +102,7 @@ class TreeModel
      * @return array $item - найденный элемент
      */
     public function getElement($id) {
-        $result = $this->_db->query("SELECT * FROM `$this->table` WHERE `id` = '$id'");
+        $result = $this->_db->query("SELECT * FROM `datatree_alg02` WHERE `id` = '$id'");
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -165,6 +158,7 @@ class TreeModel
     public function delete ($id) {
         if ($id <= 1) return false;
         $deletingId = $this->getTree(1,$id, false)['excludedId'];
+        die();
 
         foreach ($deletingId as $item) {
             $sql = 'DELETE FROM datatree_alg02 WHERE id = :id';
@@ -178,7 +172,7 @@ class TreeModel
     }
 
     public function getParentByChildrenId ($children_id) {
-        $result = $this->_db->query("SELECT * FROM `$this->table` WHERE `children_id` REGEXP '$children_id'");
+        $result = $this->_db->query("SELECT * FROM `datatree_alg02` WHERE `children_id` REGEXP '$children_id'");
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -191,8 +185,6 @@ class TreeModel
 
     private function changeParent ($id, $parent_id) {
         $parent = $this->getParentByChildrenId($id);
-//        print_r($parent);
-//        die();
         if ($parent_id == $parent['id']) return false;
 
         $childrens = $parent['children_id'];
@@ -201,12 +193,6 @@ class TreeModel
 
         $parent = $this->getElement($parent_id);
         $childrens = $parent['children_id'].$id.',';
-        echo $parent_id.' '.$parent['id'].' ';
-        print_r($childrens);
-        echo '<hr>';
-        print_r($parent);
-//        die();
-
         return $this->setParent($parent_id, $childrens);
     }
 

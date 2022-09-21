@@ -76,7 +76,7 @@ class Tree extends Controller
             $parent_id = explode('|',$_POST['parent_id'])[1];
             $parent_id = $parent_id == 0 ? 1: $parent_id;
             $dataTree = $this->Model('TreeModel');
-            $dataTree->id = (int)$_POST['id'];
+            $dataTree->id = $_POST['id'];
             $dataTree->parent_id = $parent_id;
             $dataTree->title = trim($_POST['title']);
             $dataTree->description = trim($_POST['description']);
