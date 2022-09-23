@@ -44,8 +44,10 @@ class Tree extends Controller
         $itemData = $id > 0 ? $dataTree->getElement($id): '';
         $tree = $dataTree->getTree(0, $id)['items'];
         $data = [
+            'title' => 'Редактирование элемента '.$itemData['id'].'|'.$itemData['title'],
             'tree' =>  $tree,
-            'itemdata' =>  $itemData
+            'itemdata' =>  $itemData,
+            'isnew' => 0
         ];
         $this->view('tree/edit', $data);
     }
@@ -55,11 +57,19 @@ class Tree extends Controller
 
         $dataTree = $this->Model('TreeModel');
         $tree = $dataTree->getTree()['items'];
-        $data = [
-            'tree' =>  $tree,
-            'parent_id' =>  $parent_id,
+        $itemData = [
+            'parent_id' => $parent_id,
+            'title' => '',
+            'description' => '',
+            'id' => 0,
         ];
-        $this->view('tree/add', $data);
+        $data = [
+            'title' => 'Добавление эелемента',
+            'tree' =>  $tree,
+            'itemdata' =>  $itemData,
+            'isnew' => 1
+        ];
+        $this->view('tree/edit', $data);
     }
 
     public function store() {

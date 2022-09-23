@@ -1,10 +1,10 @@
 <?php
-$title = "редактирование элемента";
+$title = $data['title'];
 require_once 'public/layouts/header.php';
 ?>
 
 <section class="container main">
-    <h2>Редактирование элемента <?=$data['itemdata']['id']?>|<?=$data['itemdata']['title']?></h2>
+    <h2><?=$data['title']?></h2>
     <form action="/tree/store/" name="SendForm" method="post" class="form-control" onsubmit="return checkTreeForm();">
         <label for="parent_id">Введите родителя</label>
         <select name="parent_id" placeholder="введите родителя">
@@ -35,7 +35,7 @@ require_once 'public/layouts/header.php';
         <textarea name="description" id="" placeholder="Введите описание"><?=$data['itemdata']['description']?></textarea>
         <br>
         <input type="hidden" name="id" value="<?=$data['itemdata']['id']?>">
-        <input type="hidden" name="isnew" value="0">
+        <input type="hidden" name="isnew" value="<?=$data['isnew']?>">
         <div class="btn-group">
             <button type="submit" class="btn btn-success">Сохранить</button>
             <a onclick="history.back();return false;">
