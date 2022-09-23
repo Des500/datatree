@@ -64,7 +64,7 @@ class Tree extends Controller
             'id' => 0,
         ];
         $data = [
-            'title' => 'Добавление эелемента',
+            'title' => 'Добавление элемента',
             'tree' =>  $tree,
             'itemdata' =>  $itemData,
             'isnew' => 1
