@@ -67,7 +67,7 @@ class Tree extends Controller
 
         if(isset($_POST['title'])) {
             $isNew = (int)$_POST['isnew'];
-            $parent_id = explode('|',$_POST['parent_id'])[1];
+            $parent_id = $_POST['parent_id'];
             $dataTree = $this->Model('TreeModel');
             $dataTree->id = $_POST['id'];
             $dataTree->parent_id = $parent_id;

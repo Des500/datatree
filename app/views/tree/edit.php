@@ -7,7 +7,7 @@ require_once 'public/layouts/header.php';
     <h2>Редактирование элемента <?=$data['itemdata']['id']?>|<?=$data['itemdata']['title']?></h2>
     <form action="/tree/store/" name="SendForm" method="post" class="form-control" onsubmit="return checkTreeForm();">
         <label for="parent_id">Введите родителя</label>
-        <select name="parent_id" placeholder="введите родителя" value="<?=$data['itemdata']['parent_id']?>">
+        <select name="parent_id" placeholder="введите родителя">
         <option disabled value="">Выбрать родителя...</option>
         <?php
         foreach ($data['tree'] as $item):
@@ -16,6 +16,7 @@ require_once 'public/layouts/header.php';
                     <?php
                         if($item['item']['id'] == $data['itemdata']['parent_id']) echo 'selected';
                     ?>
+                    value="<?=$item['item']['id']?>"
                 >
                 <?php
                     for ($i = 0; $i < $item['level']; $i++) echo '-';
