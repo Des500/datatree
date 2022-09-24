@@ -59,8 +59,8 @@ class TreeModel
      * @return array $items - массив дочерних элементов
      */
     public function getParentChildrens ($parent_id = 0) {
-        $result = $this->_db->query("SELECT * FROM `datatree` WHERE `parent_id` = '$parent_id' ORDER BY `id`");
-        $items = $result->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->_db->query("SELECT * FROM `datatree` WHERE `parent_id` = '$parent_id' ORDER BY `id`");
+        $items = $query->fetchAll(PDO::FETCH_ASSOC);
         return $items;
     }
 
