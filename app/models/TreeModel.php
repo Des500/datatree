@@ -35,8 +35,6 @@ class TreeModel
      * [excludedId] - массив исключенных id
      */
     public function getTree ($id=0, $excludeId = -1, $addRootLevel = true) {
-        $query = $this->_db->query("SELECT * FROM `datatree` ORDER BY `id`");
-        $this->queryArray = $query->fetchAll(PDO::FETCH_ASSOC);
         if($addRootLevel)
             $this->treeArray['items'][0] = [
                 'level' => 0,
@@ -60,14 +58,9 @@ class TreeModel
      * @param  int  $parent_id - id родительского элемента, по которому собираются дочерние (для корня - родитель 0)
      * @return array $items - массив дочерних элементов
      */
-    public function getParentChildrens ($parentId = 0) {
-        $items =[];
-        foreach ($this->queryArray as $key => $item) {
-            if($item['parent_id']==$parentId) {
-                array_push($items, $item);
-                unset($this->queryArray[$key]);
-            }
-        }
+    public function getParentChildrens ($parent_id = 0) {
+        $result = $this->_db->query("SELECT * FROM `datatree` WHERE `parent_id` = '$parent_id' ORDER BY `id`");
+        $items = $result->fetchAll(PDO::FETCH_ASSOC);
         return $items;
     }
 
@@ -81,7 +74,8 @@ class TreeModel
     public function getChildrenTree($parent_id = 0, $level = 0, $excludeId = 0) {
         $items = $this->getParentChildrens($parent_id);
         $level ++;
-        foreach ($items as $key => $item) {
+        foreach ($items as $item) {
+
             if(($parent_id != $excludeId)) {
                 $this->treeArray['items'][$item['id']] = [
                     'level' => $level,
