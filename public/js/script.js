@@ -26,30 +26,43 @@ document.addEventListener('DOMContentLoaded', function(){
         }, 4000);
     });
 
-    // получение и вывод информации об элементе ajax запрос
+    // получение и вывод информации об элементе, ajax запрос
     function getElement (itemId) {
-        let request = new XMLHttpRequest();
-        let url = '/tree/getElementAjax/' + itemId;
-        request.open("POST", url, true);
-        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                itemContent = JSON.parse(request.responseText);
-                document.querySelector('#element-title').innerHTML = itemContent['id'] + '|' + itemContent['title'];
-                document.querySelector('#element-desc').innerHTML = itemContent['description'];
-                document.querySelector('#element-desc-null').innerHTML = '';
 
-                document.querySelector('#element-edit').style.display = '';
-                document.querySelector('#element-add').style.display = '';
-                document.querySelector('#element-delete').style.display = '';
+        if (itemId == 0) {
+            document.querySelector('#element-title').innerHTML = 'Выберите элемент';
+            document.querySelector('#element-desc').innerHTML = '';
+            document.querySelector('#element-desc-null').innerHTML = 'или добавьте по кнопке ниже';
 
-                document.querySelector('#element-edit').setAttribute('href', '/tree/edit/' + itemId);
-                document.querySelector('#element-add').setAttribute('href', '/tree/add/' + itemId);
-                document.querySelector('#element-delete').setAttribute('href', '/tree/delete/' + itemId);
+            document.querySelector('#element-edit').style.display = 'none';
+            document.querySelector('#element-delete').style.display = 'none';
 
-            }
-        });
-        request.send();
+            document.querySelector('#element-add').setAttribute('href', '/tree/add/0');
+        }
+        else {
+            let request = new XMLHttpRequest();
+            let url = '/tree/getElementAjax/' + itemId;
+            request.open("POST", url, true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                    itemContent = JSON.parse(request.responseText);
+                    document.querySelector('#element-title').innerHTML = itemContent['id'] + '|' + itemContent['title'];
+                    document.querySelector('#element-desc').innerHTML = itemContent['description'];
+                    document.querySelector('#element-desc-null').innerHTML = '';
+
+                    document.querySelector('#element-edit').style.display = '';
+                    document.querySelector('#element-add').style.display = '';
+                    document.querySelector('#element-delete').style.display = '';
+
+                    document.querySelector('#element-edit').setAttribute('href', '/tree/edit/' + itemId);
+                    document.querySelector('#element-add').setAttribute('href', '/tree/add/' + itemId);
+                    document.querySelector('#element-delete').setAttribute('href', '/tree/delete/' + itemId);
+
+                }
+            });
+            request.send();
+        }
         return true;
     }
 
@@ -57,20 +70,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.querySelectorAll('.links a').forEach(function (item) {
         item.addEventListener( 'click', function () {
             itemId = item.id.split('-')[1];
-            if (itemId == 0) {
-                document.querySelector('#element-title').innerHTML = 'Выберите элемент';
-                document.querySelector('#element-desc').innerHTML = '';
-                document.querySelector('#element-desc-null').innerHTML = 'или добавьте по кнопке ниже';
-
-                document.querySelector('#element-edit').style.display = 'none';
-                document.querySelector('#element-delete').style.display = 'none';
-
-                document.querySelector('#element-add').setAttribute('href', '/tree/add/0');
-                return;
-            }
-            else {
-                getElement(itemId);
-            }
+            getElement(itemId);
             if (window.innerWidth<=900)
                 document.querySelector('#menu-checkbox').checked = false;
         })
